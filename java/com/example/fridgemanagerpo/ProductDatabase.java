@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Product.class},version = 5)
+@Database(entities = {Product.class},version = 16)
 @TypeConverters({Converters.class})
 public abstract class ProductDatabase extends RoomDatabase {
 
@@ -48,9 +48,9 @@ public abstract class ProductDatabase extends RoomDatabase {
         }
         @Override
         protected Void doInBackground(Void... voids) {
-           // productDao.insert(new Product(1, "xD","21.03.2020"));
-           // productDao.insert(new Product(2, "xDD","22.03.2020"));
-           // productDao.insert(new Product(3, "xDDD","22.03.2004"));
+            // productDao.insert(new Product(1, "xD","21.03.2020"));
+            // productDao.insert(new Product(2, "xDD","22.03.2020"));
+            // productDao.insert(new Product(3, "xDDD","22.03.2004"));
             return null;
         }
     }

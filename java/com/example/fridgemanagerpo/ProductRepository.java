@@ -2,6 +2,7 @@ package com.example.fridgemanagerpo;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 
@@ -10,31 +11,44 @@ import androidx.lifecycle.LiveData;
 public class ProductRepository {
     private ProductDao productDao;
     private LiveData<List<Product>> allProducts;
+    public String category = "";
 
-    public ProductRepository(Application application){
+    public ProductRepository(Application application) {
         ProductDatabase database = ProductDatabase.getInstance(application);
         productDao = database.productDao();//przez builder w Database Room generuje ciało do tej metody
         allProducts = productDao.getAllProducts();
     }
+
     //Viewmodel ma korzysta tylko z tych metod
-    public void insert(Product product){
+    public void insert(Product product) {
         new InsertProductAsyncTask(productDao).execute(product);
     }
-    public void update(Product product){
+
+    public void update(Product product) {
         new UpdateProductAsyncTask(productDao).execute(product);
 
     }
-    public void delete(Product product){
+
+    public void delete(Product product) {
         new DeleteProductAsyncTask(productDao).execute(product);
 
     }
-    public void deleteAllProducts(Product product){
+
+    public void deleteAllProducts(Product product) {
         new DeleteAllProductAsyncTask(productDao).execute();
 
     }
-    public LiveData<List<Product>> getAllProducts(){
-        return allProducts;
+
+    public LiveData<List<Product>> getProductsByCategory(String selected_category) {
+        Log.i("repo", "getProductsByCategory");
+        return productDao.getProductsByCategory(selected_category);
     }
+
+    public LiveData<List<Product>> getAllProducts() {
+        // return allProducts;
+        return productDao.getProductsByCategory(category);
+    }
+
 
     private static class InsertProductAsyncTask extends AsyncTask<Product,Void,Void>{
         private ProductDao productDao;

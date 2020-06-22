@@ -3,6 +3,7 @@ package com.example.fridgemanagerpo;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -26,6 +27,18 @@ public interface ProductDao {
 
     @Query("SELECT * FROM product_table ORDER BY expDate ASC")
     LiveData<List<Product>> getAllProducts();
+
+    @Query("SELECT * FROM product_table WHERE category LIKE :selected_category ORDER BY expDate ASC")
+    LiveData<List<Product>> getProductsByCategory(String selected_category);
+
+//    @Insert
+//    void insert(Item item);
+//
+//    @Update
+//    void update(Item item);
+//
+//    @Delete
+//    void delete(Item item);
 
 
 }

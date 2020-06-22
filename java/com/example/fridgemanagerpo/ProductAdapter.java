@@ -33,9 +33,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
     @Override
     public void onBindViewHolder(@NonNull ProductHolder holder, int position) {
         long timeNow = Instant.now().toEpochMilli();
-      //  long milisec = expDate.getTime();
+        //  long milisec = expDate.getTime();
 
         Product currentProduct = products.get(position);
+      //  holder.textViewTimeLeft.setText(DateUtils.getRelativeTimeSpanString(currentProduct.getExpDate().getTime(),timeNow,DateUtils.DAY_IN_MILLIS));
+        holder.textViewCategory.setText(currentProduct.getCategory());
         holder.textViewName.setText(currentProduct.getName());
         holder.textViewDescription.setText(currentProduct.getDescription());
         //holder.textViewpriority.setText(String.valueOf(currentProduct.getPriority()));
@@ -58,12 +60,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         return products.size();
     }
     public void setProducts(List<Product>products){
-       this.products = products;
-       notifyDataSetChanged();
+        this.products = products;
+        notifyDataSetChanged();
     }
 
     public  Product getProductAt(int position){
-       return products.get(position);
+        return products.get(position);
     }
     //public void setOnItemClickListener(OnItemClickListener listener){mlistener = listener; }
     class ProductHolder extends RecyclerView.ViewHolder{
@@ -71,6 +73,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         private TextView textViewDescription;
         private TextView textViewDate;
         private ImageView deleteProduct;
+        private TextView textViewTimeLeft;
+        private TextView textViewCategory;
 
 
         public ProductHolder(@NonNull View itemView) {
@@ -80,30 +84,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewDate = itemView.findViewById(R.id.text_view_date);
             deleteProduct = itemView.findViewById(R.id.delete_product);
+            textViewDate = itemView.findViewById(R.id.text_view_date);
+            textViewCategory = itemView.findViewById(R.id.text_view_category);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if(listener != null && position != RecyclerView.NO_POSITION)
-                    listener.onItemClick(products.get(position));
+                        listener.onItemClick(products.get(position));
                 }
             });
-         //   deleteProduct.setOnClickListener(new View.OnClickListener() {
-             //   @Override
-                 //   public void onClick(View view) {
-                 //   int position = getAdapterPosition();
-                 //   if(listener != null && position != RecyclerView.NO_POSITION)
-                 //       listener.onDeleteClick(position);
+            //   deleteProduct.setOnClickListener(new View.OnClickListener() {
+            //   @Override
+            //   public void onClick(View view) {
+            //   int position = getAdapterPosition();
+            //   if(listener != null && position != RecyclerView.NO_POSITION)
+            //       listener.onDeleteClick(position);
 
             //    }
-           // });
+            // });
         }
     }
 
     public interface OnItemClickListener{
         void onItemClick(Product product);
-      //  void onDeleteClick(int position);
+        //  void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
