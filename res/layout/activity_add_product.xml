@@ -23,12 +23,36 @@
         android:layout_marginTop="8dp"
         android:textAppearance="@android:style/TextAppearance.Medium"
         />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout1"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+
+
+
+        <EditText
+            android:id="@+id/edit_text_category"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Category:"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_marginVertical="160dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_centerHorizontal="false">
 
         <NumberPicker
             android:id="@+id/day_picker"
@@ -36,7 +60,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/month_picker"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="16dp" />
 
         <NumberPicker
             android:id="@+id/year_picker"
@@ -44,7 +68,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/month_picker"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="16dp" />
 
         <NumberPicker
             android:id="@+id/month_picker"
@@ -52,9 +76,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/day_picker"
             app:layout_constraintStart_toStartOf="@+id/year_picker"
-            tools:layout_editor_absoluteY="0dp" />
+            tools:layout_editor_absoluteY="16dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </LinearLayout>
